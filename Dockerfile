@@ -18,7 +18,7 @@ COPY . /SwarmUI
 
 # Set permissions and prepare runtime user
 RUN chown -R $UID:$UID /SwarmUI
-RUN git config --global --add safe.directory '*'
+RUN git config --system --add safe.directory /SwarmUI
 RUN useradd -m -u $UID -d /home/swarmui swarmui || true
 
 # Remove any built binaries that shouldn't be shipped
