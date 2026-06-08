@@ -109,11 +109,15 @@ Mac information is currently untested, but presumed to work fairly similar to Li
 
 # Docker-Compose
 
-If you're a "docker compose" fan, there is an included example docker compose file you can use as usual, which is equivalent to the "standard" option above.
+A root `Dockerfile` and `docker-compose.yml` are now provided in the repository root for a standard contained installation.
 
-- Copy the `launchtools/example-docker-compose.yml` to `docker-compose.yml` in the Swarm root, optionally edit the contents (eg add other drives)
-- Run it via `HOST_UID="$(id -u)" HOST_GID="$(id -g)" docker compose up`
-- You should probably `docker compose rm` after
+- The `Dockerfile` builds Swarm with the same standard environment as `launchtools/StandardDockerfile.docker`.
+- The root `docker-compose.yml` is configured to mount persistent volumes for `Data`, `dlbackend`, `src/BuiltinExtensions/ComfyUIBackend/DLNodes`, and `src/Extensions`, plus host folders for `Models` and `Output`.
+- Run it via:
+  - `HOST_UID="$(id -u)" HOST_GID="$(id -g)" docker compose up`
+- After stopping, clean up with `docker compose rm`
+
+You can still use the existing `launchtools/example-docker-compose.yml` as an alternate example if you want to customize other paths, but the repository root files are ready to use immediately.
 
 If you're not an active "docker compose" fan that needs it for some reason, I do not recommend it.
 
